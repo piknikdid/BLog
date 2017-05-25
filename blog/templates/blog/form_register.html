@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block body %}
+<div class="container userform">
+  <form class= "form-horizontal"action="" method="post" role = 'form'>
+    {% csrf_token %}
+    {% include 'blog/form_template.html' %}
+    <button type="submit" name="button" class="btn btn-default">Submit</button>
+  </form>
+</div>
+{% endblock %}
