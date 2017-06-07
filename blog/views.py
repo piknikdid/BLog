@@ -2,19 +2,26 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, models, get_user
 from django.views import generic
 from django.views.generic import View
 from models import Blog_Post
 from .forms import RegisterForm
 
-class IndexView(generic.ListView):
+class IndexView(generic.base.TemplateView):
     template_name = 'blog/index.html'
-    context_object_name = 'blogPost'
+
+    def get(self,request):
+        if request.user.is_authenticated  :
+            return render(request, self.template_name, {'blogPost':Blog_Post.objects.all()[:5]})
+        else:
+            return redirect('blog:register')
+
+        return render(request, self.template_name, {'blogPost':Blog_Post.objects.all()[:5]})
 
 
-    def get_queryset(self):
-        return Blog_Post.objects.all()
+
+
 
 class UserFormView(View):
     form_class = RegisterForm
@@ -40,5 +47,7 @@ class UserFormView(View):
                 if user.is_active:
                     login(request,user)
                     return redirect('blog:index')
+
+            return redirect('blog:index')
 
         return render(request, self.template_name, {'form':form})

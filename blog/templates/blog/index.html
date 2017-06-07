@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+{% load static %}
 
 {% block body %}
 <div class="jumbotron">
@@ -9,4 +9,16 @@
        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
      </div>
 </div>
+<ul class="list-group">
+  {% for i in blogPost %}
+  <li >
+    <h2>{{i.title}}</h2>
+    <div class="well">{{i.blog_text}}
+      <p class="pdate">{{i.pub_date}}</p>
+    </div>
+
+  </li>
+  {% endfor %}
+</ul>
+
 {% endblock %}
