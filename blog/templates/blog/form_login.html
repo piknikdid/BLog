@@ -2,14 +2,14 @@
 {% load staticfiles %}
 {% load static %}
 
+
 {% block body %}
 <div class="container regUser col-sm-offset-1 col-sm-3">
   <form class= "form-horizontal " action="" method="post" role = 'form'>
     {% csrf_token %}
     {% include 'blog/form_template.html' %}
     <button type="submit" name="button" class="btn btn-success col-sm-offset-5">Ok</button>
-    <a class="btn btn-primary" href = "{% url 'blog:login' %}">Sign In</a>
+    <a class="btn btn-primary" href = "{% url 'blog:register' %}">Sign Up</a>
   </form>
-
 </div>
 {% endblock %}

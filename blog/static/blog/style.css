@@ -1,11 +1,18 @@
+
+
 .jumbotron{
   background-image: url("images/background.jpg");
   background-size: cover;
 }
 
-.userform{
-  padding: 40px 15px;
-  text-align: center;
+.regUser{
+  padding: 10px 25px;
+  border: 1px solid;
+  margin-top: 70px;
+}
+
+label{
+  color:white;
 }
 
 .pdate{
